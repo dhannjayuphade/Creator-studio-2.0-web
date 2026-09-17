@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Navbar } from './components/Navbar';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { Hero } from './components/Hero';
@@ -57,6 +57,10 @@ export default function App() {
     handleShowToast(!isDarkMode ? "Cyber Dark Mode Enabled" : "High-Tech Light Mode Enabled");
   };
 
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -78,7 +82,7 @@ export default function App() {
 
       {/* Splash Screen */}
       {showSplash && (
-        <SplashScreen onComplete={() => setShowSplash(false)} />
+        <SplashScreen onComplete={handleSplashComplete} />
       )}
 
       {/* Main Sticky Navbar */}

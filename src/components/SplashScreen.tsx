@@ -72,19 +72,17 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
 
   // Countdown timer
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          onComplete();
-          return 0;
-        }
-        return prev - 1;
-      });
+    if (countdown <= 0) {
+      onComplete();
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown(prev => Math.max(0, prev - 1));
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, [onComplete]);
+    return () => clearTimeout(timer);
+  }, [countdown, onComplete]);
 
   const handleEnterStudio = () => {
     playCyberChime();
