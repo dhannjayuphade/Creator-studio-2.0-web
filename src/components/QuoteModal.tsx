@@ -38,7 +38,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, onSucce
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-lg cyber-glass-card rounded-3xl border-2 border-cyan-400/50 p-6 sm:p-8 shadow-[0_0_50px_rgba(0,240,255,0.3)] text-left"
+          className="relative w-full max-w-lg cyber-glass-card rounded-3xl border-2 border-cyan-400/50 p-6 sm:p-8 shadow-[0_0_50px_rgba(0,240,255,0.3)] text-left max-h-[90vh] overflow-y-auto"
         >
           {/* Close button */}
           <button

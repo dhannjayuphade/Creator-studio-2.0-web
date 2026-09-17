@@ -164,7 +164,7 @@ export const DeviceMockup: React.FC = () => {
           initial={{ x: 30, y: 30, opacity: 0 }}
           animate={{ x: 0, y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-          className="absolute -right-2 sm:-right-6 -bottom-6 sm:-bottom-8 w-32 sm:w-44 z-20"
+          className="absolute -right-1 sm:-right-6 -bottom-5 sm:-bottom-8 w-28 sm:w-44 z-20"
         >
           {/* Phone Shell */}
           <div className="relative rounded-[26px] p-2 bg-gradient-to-b from-[#1b2545] to-[#0a0f24] border-2 border-cyan-400 shadow-[0_15px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(0,240,255,0.3)]">

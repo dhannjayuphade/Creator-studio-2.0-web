@@ -42,7 +42,7 @@ export const PWAInstallBanner: React.FC<PWAInstallBannerProps> = ({
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 50, opacity: 0 }}
-          className="fixed bottom-20 left-4 right-4 sm:left-auto sm:right-6 sm:w-96 z-40"
+          className="fixed bottom-36 sm:bottom-28 lg:bottom-6 left-3 sm:left-6 right-3 sm:right-auto sm:w-96 z-40"
         >
           <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-[#0a1538] via-[#071129] to-[#0a1e38] border-2 border-emerald-400/60 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_20px_rgba(16,185,129,0.3)] backdrop-blur-xl">
             <div className="flex items-start justify-between gap-3">
@@ -58,7 +58,7 @@ export const PWAInstallBanner: React.FC<PWAInstallBannerProps> = ({
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400">
                       Android APK Ready
                     </span>
-                    <span className="px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-mono">
+                    <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-mono">
                       v2.0
                     </span>
                   </div>
