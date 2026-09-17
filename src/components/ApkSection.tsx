@@ -11,11 +11,16 @@ import {
   Wifi, 
   MessageCircle, 
   Sparkles,
-  ShieldCheck
+  ShieldCheck,
+  FolderArchive
 } from 'lucide-react';
 import { SITE_DATA } from '../data/siteData';
 
-export const ApkSection: React.FC = () => {
+interface ApkSectionProps {
+  onOpenApkConverter?: () => void;
+}
+
+export const ApkSection: React.FC<ApkSectionProps> = ({ onOpenApkConverter }) => {
   return (
     <section id="apk-section" className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-[#060a17] via-[#07132a] to-[#060a17] border-y border-cyan-500/20">
       {/* Background cyber glow */}
@@ -57,7 +62,7 @@ export const ApkSection: React.FC = () => {
                 </span>
               </h2>
               <p className="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed max-w-xl">
-                Convert your live web application or business portal into an installable Android APK. Your users can download and install it directly on any Android smartphone, complete with custom app launcher icon and full-screen experience!
+                Convert your live web application or business portal into an installable Android APK. Your users can download and install it directly on any Android smartphone, complete with custom app launcher icon, offline caching, and full-screen experience!
               </p>
             </div>
 
@@ -69,7 +74,7 @@ export const ApkSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">Custom App Icon</h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">High-res branded launcher icon appearing on home screen.</p>
+                  <p className="text-[11px] text-slate-400 mt-0.5">High-res branded launcher icon appearing on phone home screen.</p>
                 </div>
               </div>
 
@@ -108,30 +113,41 @@ export const ApkSection: React.FC = () => {
                   <Download className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-emerald-300">Fast APK Delivery</h4>
-                  <p className="text-[11px] text-slate-300 mt-0.5">We compile, test, and deliver your signed .apk package ready to share with clients or students.</p>
+                  <h4 className="text-xs font-bold text-emerald-300">Fast APK Delivery &amp; Instant Generator</h4>
+                  <p className="text-[11px] text-slate-300 mt-0.5">We compile, test, and deliver signed .apk packages ready to share, or you can use our instant Web-to-APK Studio tool below!</p>
                 </div>
               </div>
             </div>
 
-            {/* Strong CTA Button: Create My APK / Build My Android APK */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+            {/* Action Buttons: Open Converter Studio & WhatsApp */}
+            <div className="pt-4 flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-start">
+              {onOpenApkConverter && (
+                <button
+                  id="open-apk-converter-tool-btn"
+                  onClick={onOpenApkConverter}
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-slate-950 font-black text-sm sm:text-base shadow-[0_0_30px_rgba(34,197,94,0.45)] hover:shadow-[0_0_40px_rgba(34,197,94,0.7)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+                >
+                  <Smartphone className="w-5 h-5 text-slate-950" />
+                  <span>Launch Web-to-APK Converter</span>
+                  <ArrowRight className="w-4 h-4 text-slate-950" />
+                </button>
+              )}
+
               <a
                 id="create-apk-cta-btn"
                 href={SITE_DATA.contact.getWhatsAppUrl(SITE_DATA.apkDetails.whatsappPrompt)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-black font-black text-sm sm:text-base shadow-[0_0_30px_rgba(34,197,94,0.45)] hover:shadow-[0_0_40px_rgba(34,197,94,0.7)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 border border-emerald-400/40 text-emerald-300 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Download className="w-5 h-5 text-black" />
-                <span>Build My Android APK</span>
-                <ArrowRight className="w-4 h-4 text-black" />
+                <MessageCircle className="w-4 h-4 text-emerald-400" />
+                <span>Order Signed APK via WhatsApp</span>
               </a>
-
-              <span className="text-xs text-slate-400">
-                Direct WhatsApp consultation with Dhannjay
-              </span>
             </div>
+            
+            <p className="text-xs text-slate-400">
+              Direct consultation with Dhananjay Uphade (+91 8975881499)
+            </p>
           </div>
 
           {/* Right Column: Animated Smartphone Mockup Displaying APK in Action */}
@@ -163,18 +179,18 @@ export const ApkSection: React.FC = () => {
 
                   {/* App Header */}
                   <div className="mt-4 p-3 rounded-2xl bg-gradient-to-br from-[#0c183a] to-[#070d22] border border-cyan-500/30 text-center shadow-inner">
-                    <div className="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 to-emerald-400 flex items-center justify-center text-black font-black text-lg shadow-[0_0_15px_rgba(0,240,255,0.4)] mb-2">
-                      DU
+                    <div className="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-br from-cyan-400 via-teal-400 to-emerald-400 flex items-center justify-center text-black font-black text-base shadow-[0_0_15px_rgba(0,240,255,0.4)] mb-2">
+                      2.0
                     </div>
-                    <h5 className="font-display font-extrabold text-sm text-white">DHANNJAY UPHADE</h5>
-                    <p className="text-[10px] text-cyan-300 font-medium">Standalone Android App</p>
+                    <h5 className="font-display font-extrabold text-xs sm:text-sm text-white">CREATOR STUDIO 2.0</h5>
+                    <p className="text-[10px] text-emerald-300 font-medium">Android APK &amp; Web App</p>
                   </div>
 
                   {/* App UI items simulation */}
                   <div className="space-y-2 my-auto py-2">
                     <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-[11px]">
                       <span className="text-slate-300">App Version</span>
-                      <span className="text-emerald-400 font-mono font-bold">v2.4 (APK)</span>
+                      <span className="text-emerald-400 font-mono font-bold">v2.0 (APK)</span>
                     </div>
                     <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-[11px]">
                       <span className="text-slate-300">Offline Fallback</span>
@@ -188,15 +204,25 @@ export const ApkSection: React.FC = () => {
 
                   {/* Install Simulation CTA */}
                   <div className="space-y-2">
-                    <a
-                      href={SITE_DATA.contact.getWhatsAppUrl(SITE_DATA.apkDetails.whatsappPrompt)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs flex items-center justify-center gap-1.5 shadow"
-                    >
-                      <Download className="w-3.5 h-3.5" />
-                      <span>Download APK Sample</span>
-                    </a>
+                    {onOpenApkConverter ? (
+                      <button
+                        onClick={onOpenApkConverter}
+                        className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs flex items-center justify-center gap-1.5 shadow cursor-pointer"
+                      >
+                        <FolderArchive className="w-3.5 h-3.5" />
+                        <span>Convert to APK Now</span>
+                      </button>
+                    ) : (
+                      <a
+                        href={SITE_DATA.contact.getWhatsAppUrl(SITE_DATA.apkDetails.whatsappPrompt)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-xs flex items-center justify-center gap-1.5 shadow"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Download APK Sample</span>
+                      </a>
+                    )}
                     <div className="w-16 h-1 bg-slate-600 rounded-full mx-auto" />
                   </div>
 
@@ -211,3 +237,4 @@ export const ApkSection: React.FC = () => {
     </section>
   );
 };
+

@@ -20,13 +20,15 @@ interface NavbarProps {
   onToggleTheme: () => void;
   onRequestQuote: () => void;
   onOpenWelcomeAnimation?: () => void;
+  onOpenApkConverter?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ 
   isDarkMode, 
   onToggleTheme, 
   onRequestQuote,
-  onOpenWelcomeAnimation 
+  onOpenWelcomeAnimation,
+  onOpenApkConverter
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -134,6 +136,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Actions: Welcome Intro, Official Site, WhatsApp, Theme Toggle, Request CTA */}
           <div className="flex items-center gap-2">
+            {/* Convert to APK Tool Button */}
+            {onOpenApkConverter && (
+              <button
+                id="nav-open-apk-converter-btn"
+                onClick={onOpenApkConverter}
+                className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/50 text-emerald-300 text-xs font-bold transition shadow-[0_0_15px_rgba(16,185,129,0.2)] cursor-pointer"
+                title="Convert Website to Android APK"
+              >
+                <Smartphone className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                <span>APK Converter</span>
+              </button>
+            )}
+
             {/* Replay Welcome Intro */}
             {onOpenWelcomeAnimation && (
               <button
@@ -227,6 +242,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
               
               <div className="pt-2 border-t border-slate-800 flex flex-col gap-2">
+                {onOpenApkConverter && (
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      onOpenApkConverter();
+                    }}
+                    className="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-400/50 text-emerald-300 font-bold text-xs flex items-center justify-center gap-1.5 shadow"
+                  >
+                    <Smartphone className="w-3.5 h-3.5 text-emerald-400" /> Web-to-APK Converter Studio
+                  </button>
+                )}
+
                 {onOpenWelcomeAnimation && (
                   <button
                     onClick={() => {

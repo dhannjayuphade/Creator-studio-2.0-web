@@ -16,6 +16,8 @@ import { LiveChatWidget } from './components/LiveChatWidget';
 import { SplashScreen } from './components/SplashScreen';
 import { Toast } from './components/Toast';
 import { QuoteModal } from './components/QuoteModal';
+import { ApkConverterModal } from './components/ApkConverterModal';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { MessageCircle, ArrowUp } from 'lucide-react';
 import { SITE_DATA } from './data/siteData';
 
@@ -25,6 +27,7 @@ export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isApkModalOpen, setIsApkModalOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   // Scroll listener for progress bar and back-to-top button
@@ -84,15 +87,19 @@ export default function App() {
         onToggleTheme={handleToggleTheme}
         onRequestQuote={() => setIsQuoteModalOpen(true)}
         onOpenWelcomeAnimation={() => setShowSplash(true)}
+        onOpenApkConverter={() => setIsApkModalOpen(true)}
       />
 
       {/* Main Page Sections */}
       <main className="relative">
-        <Hero onOpenQuoteModal={() => setIsQuoteModalOpen(true)} />
+        <Hero 
+          onOpenQuoteModal={() => setIsQuoteModalOpen(true)}
+          onOpenApkConverter={() => setIsApkModalOpen(true)}
+        />
         <ServicesSection />
         <FreeDemoSection />
         <ProjectsSection />
-        <ApkSection />
+        <ApkSection onOpenApkConverter={() => setIsApkModalOpen(true)} />
         <TechSection />
         <WhyChooseUs />
         <ProcessTimeline />
@@ -140,6 +147,19 @@ export default function App() {
         isOpen={isQuoteModalOpen}
         onClose={() => setIsQuoteModalOpen(false)}
         onSuccess={handleShowToast}
+      />
+
+      {/* Web-to-APK Converter Studio Modal */}
+      <ApkConverterModal
+        isOpen={isApkModalOpen}
+        onClose={() => setIsApkModalOpen(false)}
+        onShowToast={handleShowToast}
+      />
+
+      {/* Persistent PWA & Android Install Floating Banner */}
+      <PWAInstallBanner
+        onOpenApkConverter={() => setIsApkModalOpen(true)}
+        onShowToast={handleShowToast}
       />
 
       {/* Global Toast Notification */}

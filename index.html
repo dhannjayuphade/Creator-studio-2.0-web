@@ -15,11 +15,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
     
-    <!-- Favicon -->
+    <!-- Favicon & PWA Manifest -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23070b19' stroke='%2300f0ff' stroke-width='4'/><text x='50' y='60' font-family='sans-serif' font-weight='900' font-size='34' fill='%2300f0ff' text-anchor='middle'>2.0</text></svg>" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#060a17" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="CreatorStudio" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
   </head>
   <body class="bg-[#060a17] text-slate-100 antialiased selection:bg-cyan-500 selection:text-black overflow-x-hidden">
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.log('SW registration note:', err);
+          });
+        });
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

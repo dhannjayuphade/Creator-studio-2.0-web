@@ -18,9 +18,10 @@ import { DeviceMockup } from './DeviceMockup';
 
 interface HeroProps {
   onOpenQuoteModal: () => void;
+  onOpenApkConverter?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal, onOpenApkConverter }) => {
   return (
     <section
       id="home"
@@ -172,6 +173,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal }) => {
               <Eye className="w-4 h-4 text-emerald-400" />
               <span>Try Free Demo</span>
             </a>
+
+            {/* Convert to APK Button */}
+            {onOpenApkConverter && (
+              <button
+                id="hero-convert-apk-btn"
+                onClick={onOpenApkConverter}
+                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 text-emerald-300 font-bold text-sm sm:text-base border border-emerald-400/50 transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.25)] cursor-pointer"
+              >
+                <Smartphone className="w-4 h-4 text-emerald-400" />
+                <span>Convert to APK</span>
+              </button>
+            )}
           </motion.div>
 
           {/* Quick contact strip */}
@@ -218,12 +231,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuoteModal }) => {
               >
                 Explore Demos
               </a>
-              <a
-                href="#apk-section"
-                className="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-400/40 text-xs font-semibold transition"
-              >
-                Website → APK
-              </a>
+              {onOpenApkConverter ? (
+                <button
+                  onClick={onOpenApkConverter}
+                  className="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-400/40 text-xs font-semibold transition cursor-pointer flex items-center gap-1.5"
+                >
+                  <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Convert to APK</span>
+                </button>
+              ) : (
+                <a
+                  href="#apk-section"
+                  className="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-400/40 text-xs font-semibold transition"
+                >
+                  Website → APK
+                </a>
+              )}
             </div>
           </div>
         </div>
